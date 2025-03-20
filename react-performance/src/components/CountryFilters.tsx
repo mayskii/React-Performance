@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 interface Props {
   onSearch: (query: string) => void;
@@ -7,9 +7,9 @@ interface Props {
 }
 
 const CountryFilters = ({ onSearch, onFilter, onSort }: Props) => {
-  const [search, setSearch] = useState("");
-  const [region, setRegion] = useState("");
-  const [sort, setSort] = useState("");
+  const [search, setSearch] = useState('');
+  const [region, setRegion] = useState('');
+  const [sort, setSort] = useState('');
 
   return (
     <div>
@@ -35,7 +35,7 @@ const CountryFilters = ({ onSearch, onFilter, onSort }: Props) => {
         <option value="America">America</option>
         <option value="Asia">Asia</option>
         <option value="Europe">Europe</option>
-        <option value="AustraliaAndOceania">Australia and Oceania</option>
+        <option value="Oceania">Australia and Oceania</option>
       </select>
 
       <select

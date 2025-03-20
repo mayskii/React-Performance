@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-const API_URL = "https://restcountries.com/v3.1/all";
+const API_URL = 'https://restcountries.com/v3.1/all';
 
 export interface Country {
   name: { common: string };
@@ -18,7 +18,7 @@ export const useFetchCountries = () => {
     const fetchCountries = async () => {
       try {
         const response = await fetch(API_URL);
-        if (!response.ok) throw new Error("Failed to fetch countries");
+        if (!response.ok) throw new Error('Failed to fetch countries');
         const data: Country[] = await response.json();
         setCountries(data);
       } catch (err) {

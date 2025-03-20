@@ -1,4 +1,4 @@
-import CountryList from "./components/CountryList";
+import CountryList from './components/CountryList';
 
 function App() {
   return (
