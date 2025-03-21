@@ -1,6 +1,7 @@
-import { useFetchCountries } from '../hooks/useFetchCountries';
+import { useFetchCountries  } from '../hooks/useFetchCountries';
 import CountryFilters from './CountryFilters';
 import { useState, useMemo } from 'react';
+import "../global.css";
 
 const CountryList = () => {
   const { countries, loading, error } = useFetchCountries();

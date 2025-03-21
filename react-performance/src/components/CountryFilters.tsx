@@ -12,7 +12,7 @@ const CountryFilters = ({ onSearch, onFilter, onSort }: Props) => {
   const [sort, setSort] = useState('');
 
   return (
-    <div>
+    <div className="filters">
       <input
         type="text"
         placeholder="Search by name..."
