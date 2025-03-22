@@ -32,7 +32,7 @@ const CountryFilters = ({ onSearch, onFilter, onSort }: Props) => {
       >
         <option value="">All Regions</option>
         <option value="Africa">Africa</option>
-        <option value="America">America</option>
+        <option value="Americas">America</option>
         <option value="Asia">Asia</option>
         <option value="Europe">Europe</option>
         <option value="Oceania">Australia and Oceania</option>
