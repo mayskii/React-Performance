@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 interface Props {
   onSearch: (query: string) => void;
@@ -11,24 +11,37 @@ const CountryFilters = ({ onSearch, onFilter, onSort }: Props) => {
   const [region, setRegion] = useState('');
   const [sort, setSort] = useState('');
 
+  const handleSearch = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setSearch(query);
+    onSearch(query);
+  }, [onSearch]);
+
+  const handleFilter = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedRegion = e.target.value;
+    setRegion(selectedRegion);
+    onFilter(selectedRegion);
+  }, [onFilter]);
+
+  const handleSort = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedSort = e.target.value;
+    setSort(selectedSort);
+    onSort(selectedSort);
+  }, [onSort]);
+
+
   return (
     <div className="filters">
       <input
         type="text"
         placeholder="Search by name..."
         value={search}
-        onChange={(e) => {
-          setSearch(e.target.value);
-          onSearch(e.target.value);
-        }}
+        onChange={handleSearch}
       />
 
       <select
         value={region}
-        onChange={(e) => {
-          setRegion(e.target.value);
-          onFilter(e.target.value);
-        }}
+        onChange={handleFilter}
       >
         <option value="">All Regions</option>
         <option value="Africa">Africa</option>
@@ -40,10 +53,7 @@ const CountryFilters = ({ onSearch, onFilter, onSort }: Props) => {
 
       <select
         value={sort}
-        onChange={(e) => {
-          setSort(e.target.value);
-          onSort(e.target.value);
-        }}
+        onChange={handleSort}
       >
         <option value="">Sort By</option>
         <option value="name">Name (A-Z)</option>

@@ -1,7 +1,7 @@
 import { useFetchCountries  } from '../hooks/useFetchCountries';
 import CountryFilters from './CountryFilters';
 import CountryCard from "./CountryCard";
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import "../global.css";
 
 const CountryList = () => {
@@ -9,6 +9,18 @@ const CountryList = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('');
   const [sortCriteria, setSortCriteria] = useState('');
+
+  const handleSearch = useCallback((query: string) => {
+    setSearchQuery(query);
+  }, []);
+
+  const handleFilter = useCallback((region: string) => {
+    setSelectedRegion(region);
+  }, []);
+
+  const handleSort = useCallback((criteria: string) => {
+    setSortCriteria(criteria);
+  }, []);
 
   const filteredCountries = useMemo(() => {
     return countries
@@ -37,9 +49,9 @@ const CountryList = () => {
   return (
     <div>
       <CountryFilters
-        onSearch={setSearchQuery}
-        onFilter={setSelectedRegion}
-        onSort={setSortCriteria}
+        onSearch={handleSearch}
+        onFilter={handleFilter}
+        onSort={handleSort}
       />
       <div className={filteredCountries.length === 1 ? "single-country" : "countries"}>
         {filteredCountries.map((country) => (

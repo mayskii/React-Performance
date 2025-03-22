@@ -1,10 +1,11 @@
 import { Country } from "../hooks/useFetchCountries";
+import { memo } from "react";
 
 interface Props {
   country: Country;
 }
 
-const CountryCard = ({ country }: Props) => {
+const CountryCard = memo(({ country }: Props) => {
   return (
     <div className="country-card">
       <img src={country.flags.svg} alt={country.name.common} width="50" />
@@ -13,6 +14,6 @@ const CountryCard = ({ country }: Props) => {
       <p>Region: {country.region}</p>
     </div>
   );
-};
+});
 
 export default CountryCard;
