@@ -50,7 +50,16 @@
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
     justify-content: center;
-    padding: 20px;
+  }
+
+  .single-country {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .single-country .country-card {
+    width: 100%;
+    max-width: 600px;
   }
   
   .country-card {

@@ -1,5 +1,6 @@
 import { useFetchCountries  } from '../hooks/useFetchCountries';
 import CountryFilters from './CountryFilters';
+import CountryCard from "./CountryCard";
 import { useState, useMemo } from 'react';
 import "../global.css";
 
@@ -40,14 +41,9 @@ const CountryList = () => {
         onFilter={setSelectedRegion}
         onSort={setSortCriteria}
       />
-      <div>
+      <div className={filteredCountries.length === 1 ? "single-country" : "countries"}>
         {filteredCountries.map((country) => (
-          <div key={country.name.common} className="country-card">
-            <img src={country.flags.svg} alt={country.name.common} width="50" />
-            <h3>{country.name.common}</h3>
-            <p>Population: {country.population.toLocaleString()}</p>
-            <p>Region: {country.region}</p>
-          </div>
+          <CountryCard key={country.name.common} country={country} />
         ))}
       </div>
     </div>
