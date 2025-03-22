@@ -1,7 +1,7 @@
 import { useFetchCountries  } from '../hooks/useFetchCountries';
 import CountryFilters from './CountryFilters';
 import CountryCard from "./CountryCard";
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import "../global.css";
 
 const CountryList = () => {
@@ -9,6 +9,25 @@ const CountryList = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('');
   const [sortCriteria, setSortCriteria] = useState('');
+  const [visitedCountries, setVisitedCountries] = useState<string[]>([]);
+
+  useEffect(() => {
+    const savedVisited = localStorage.getItem('visitedCountries');
+    if (savedVisited){
+      setVisitedCountries(JSON.parse(savedVisited));
+    }
+  }, []);
+
+  const toggleVisited = useCallback((countryName: string) => {
+    setVisitedCountries((prev) => {
+      const newVisited = prev.includes(countryName)
+        ? prev.filter((name) => name !== countryName)
+        : [...prev, countryName];
+
+      localStorage.setItem("visitedCountries", JSON.stringify(newVisited));
+      return newVisited;
+    });
+  }, []);
 
   const handleSearch = useCallback((query: string) => {
     setSearchQuery(query);
@@ -55,7 +74,12 @@ const CountryList = () => {
       />
       <div className={filteredCountries.length === 1 ? "single-country" : "countries"}>
         {filteredCountries.map((country) => (
-          <CountryCard key={country.name.common} country={country} />
+          <CountryCard 
+            key={country.name.common} 
+            country={country}
+            isVisited={visitedCountries.includes(country.name.common)}
+            onToggleVisited={toggleVisited}
+          />
         ))}
       </div>
     </div>
