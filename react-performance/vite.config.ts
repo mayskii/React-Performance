@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
+  base: '/React-Performance/',
   define: {
     "process.env.NODE_ENV": JSON.stringify("development"),
   },
