@@ -14,7 +14,10 @@ const CountryCard = memo(({ country, isVisited, onToggleVisited }: Props) => {
       <h3>{country.name.common}</h3>
       <p>Population: {country.population.toLocaleString()}</p>
       <p>Region: {country.region}</p>
-      <button onClick={() => onToggleVisited(country.name.common)}>
+      <button
+        className={isVisited ? "unmark-visited" : "mark-visited"}
+        onClick={() => onToggleVisited(country.name.common)}
+      >
         {isVisited ? "Unmark as visited" : "Mark as visited"}
       </button>
     </div>
